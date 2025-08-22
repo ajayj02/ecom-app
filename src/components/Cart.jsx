@@ -10,8 +10,6 @@ function Cart() {
   const cartItems = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  console.log("in cart: ", cartItems);
-
   if (cartItems.length === 0) {
     return (
       <div>

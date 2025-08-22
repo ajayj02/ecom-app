@@ -1,4 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
+import {
+  addByOne,
+  removeByOne,
+  removeProduct,
+  clearCart,
+} from "../redux/slices/cartSlice";
 
 function Cart() {
   const cartItems = useSelector((state) => state.cart);
@@ -24,7 +30,7 @@ function Cart() {
           <li
             style={{
               border: "1px solid black",
-              maxWidth: "300px",
+              maxWidth: "450px",
               borderRadius: "5px",
               marginBottom: "5px",
               padding: "5px",
@@ -34,10 +40,19 @@ function Cart() {
             <span style={{ marginRight: "20px" }}>
               {product.name} - INR {product.price}
             </span>
-            <button onClick={() => dispatch()}>+</button>
+            <button onClick={() => dispatch(addByOne(product.id))}>+</button>
+            <button onClick={() => dispatch(removeByOne(product.id))}>-</button>
+            <button onClick={() => dispatch(removeProduct(product.id))}>
+              Remove item
+            </button>
+
+            <span style={{ marginLeft: "20px" }}>
+              {product.quantity} X INR {product.price}
+            </span>
           </li>
         ))}
       </ul>
+      <button onClick={() => dispatch(clearCart())}>Clear Cart</button>
     </div>
   );
 }

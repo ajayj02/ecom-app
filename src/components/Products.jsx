@@ -1,3 +1,6 @@
+import { useDispatch } from "react-redux";
+import { addProduct } from "../redux/slices/cartSlice";
+
 const products = [
   { id: 1, name: "Macbook", price: 80000 },
   { id: 2, name: "Sofa-set", price: 55000 },
@@ -7,6 +10,8 @@ const products = [
 ];
 
 function Products() {
+  const dispatch = useDispatch();
+
   return (
     <div>
       <h1>Product Catalog</h1>
@@ -26,7 +31,7 @@ function Products() {
             <span style={{ marginRight: "20px" }}>
               {product.name} - INR {product.price}
             </span>
-            <button>Add to Cart</button>
+            <button onClick={() => dispatch(addProduct(product))}>Add to Cart</button>
           </li>
         ))}
       </ul>
